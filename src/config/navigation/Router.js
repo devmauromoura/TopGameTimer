@@ -5,8 +5,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Timer from './Timer';
-import Config from './Config';
+import Timer from '../../screens/timer';
+import Config from '../../screens/config';
 
 import history from './history';
 

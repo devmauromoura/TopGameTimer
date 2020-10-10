@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import logo from './logotopgame.PNG';
+import React, { useState, useEffect } from 'react';
+import logo from '../../assets/logotopgame.PNG';
 import {
   Container,
   Logo,
@@ -18,14 +18,13 @@ import {
   ControlButtons,
   BStart,
   BReset
-} from './styles';
+} from '../styles/styles';
 
 function Timer(Props) {
   useEffect(() => {
     document.title = "TOPGAME"
- }, []);
+  }, []);
 
-  const {location} = Props;
   const TimeUm = localStorage.getItem('TimeUm');
   const TimeDois = localStorage.getItem('TimeDois');
 
@@ -33,13 +32,13 @@ function Timer(Props) {
   const [pausado, setPausado] = useState(false);
 
   const handleStart = (start, resume, pause) => {
-    if(!iniciado){
+    if (!iniciado) {
       setIniciado(true);
       start();
-    }else if(iniciado && !pausado){
+    } else if (iniciado && !pausado) {
       setPausado(true);
       pause();
-    }else{
+    } else {
       setPausado(false);
       resume();
     }
@@ -57,11 +56,11 @@ function Timer(Props) {
       <Logo src={logo} />
       <ContainerContador>
         <Contador
-          initialTime={600000}
-          direction="backward"
-          startImmediately={false}
+          initialTime={600000} //10 minutos.
+          direction="backward" //Contagem regressiva.
+          startImmediately={false} //Não inicia sozinho.
         >
-          {({ start, resume, pause, stop, reset, timerState }) => (
+          {({ start, resume, pause, stop, reset }) => (
             <React.Fragment>
               <CardM>
                 <CardText>
@@ -80,22 +79,29 @@ function Timer(Props) {
                 </CardSubText>
               </CardS>
               <ControlButtons>
-                  <BStart onClick={() => handleStart(start, resume, pause)}>{!iniciado ? "INICIAR" : iniciado && !pausado ? "PAUSAR" : "RETOMAR"}</BStart>
-                  <BReset onClick={() => handleReset(reset, stop)}>RESETAR</BReset>
+                <BStart onClick={() => handleStart(start, resume, pause)}>{!iniciado ? "INICIAR" : iniciado && !pausado ? "PAUSAR" : "RETOMAR"}</BStart>
+                <BReset onClick={() => handleReset(reset, stop)}>RESETAR</BReset>
               </ControlButtons>
             </React.Fragment>
           )}
         </Contador>
       </ContainerContador>
-      <ContainerTimes>
-        <ContainerTimeUm>
-          <NomeTimeUm>{TimeUm}</NomeTimeUm>
-        </ContainerTimeUm>
-        <Vs>vs</Vs>
-        <ContainerTimeDois>
-          <NomeTimeDois>{TimeDois}</NomeTimeDois>
-        </ContainerTimeDois>
-      </ContainerTimes>
+      {
+        //Caso nenhum dos times seja informado
+        //Não será exibo o VS.
+        TimeUm.length > 0 &&
+          TimeDois.length > 0 ? (
+            <ContainerTimes>
+              <ContainerTimeUm>
+                <NomeTimeUm>{TimeUm}</NomeTimeUm>
+              </ContainerTimeUm>
+              <Vs>vs</Vs>
+              <ContainerTimeDois>
+                <NomeTimeDois>{TimeDois}</NomeTimeDois>
+              </ContainerTimeDois>
+            </ContainerTimes>
+          ) : null
+      }
     </Container>
   );
 }

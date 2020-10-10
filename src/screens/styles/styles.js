@@ -2,17 +2,18 @@ import styled from 'styled-components';
 import Timer from 'react-compound-timer';
 
 export const Container = styled.div`
-    background-color: #000000;
-    padding: 10px;
     display: flex;
-    height: 100vh;
     flex-direction: column;
     align-items: center;
+    background-color: #000000;
+    padding: 10px;
+    height: 100vh;
 `;
 
 export const Logo = styled.img`
     margin-top: 50px;
     margin-bottom: 50px;
+    width: 200px;
 `;
 
 export const ContainerContador = styled.div`
@@ -92,14 +93,14 @@ export const FormContainer = styled.div`
 
 export const TimeUmInput = styled.input`
     width: 500px;
-    height: 40px;
+    height: 30px;
     font-size: 20px;
     margin-bottom: 10px;
 `;
 
 export const TimeDoisInput = styled.input`
     width: 500px;
-    height: 40px;
+    height: 30px;
     font-size: 20px;
     margin-bottom: 10px;
 `;
@@ -109,7 +110,6 @@ export const ButtonSalvar=  styled.button`
     height: 40px;
     font-size: 20px;
 `;
-
 
 export const ControlButtons  = styled.div`
     position: absolute;

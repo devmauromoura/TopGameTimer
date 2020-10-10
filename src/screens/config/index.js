@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import logo from './logotopgame.PNG';
+import logo from '../../assets/logotopgame.PNG';
 import {
   Container,
   Logo,
@@ -7,7 +7,7 @@ import {
   TimeUmInput,
   TimeDoisInput,
   ButtonSalvar
-} from './styles';
+} from '../styles/styles';
 
 function Config(Props) {
   useEffect(() => {
